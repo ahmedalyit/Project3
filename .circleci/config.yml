@@ -38,14 +38,15 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [frontend-build]
       - run:
-          name: Build front-end
           command: |
             cd frontend
             npm install
-            exit 1
+
+      - run:
+          command: |
+            cd frontend
+            npm run build
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
